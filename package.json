@@ -1,0 +1,24 @@
+{
+  "name": "meme-me",
+  "version": "1.0.0",
+  "description": "A social memeing platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mpgelber7495/meme-me.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mpgelber7495/meme-me/issues"
+  },
+  "homepage": "https://github.com/mpgelber7495/meme-me#readme",
+  "dependencies": {
+    "sequelize": "^5.21.4",
+    "sequelize-cli": "^5.5.1"
+  }
+}
