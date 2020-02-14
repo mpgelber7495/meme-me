@@ -19,6 +19,7 @@
   "homepage": "https://github.com/mpgelber7495/meme-me#readme",
   "dependencies": {
     "handlebars": "^4.7.3",
+    "morgan": "^1.9.1",
     "sequelize": "^5.21.4",
     "sequelize-cli": "^5.5.1"
   }
