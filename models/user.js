@@ -1,8 +1,10 @@
-const sequelize = require("../config");
+const sequelize = require("../models");
 const { DataTypes } = require("sequelize");
 
-const User = (sequelize, DataTypes) => {
-  sequelize.define("User", {
+let User;
+
+module.exports = (sequelize, DataTypes) => {
+  User = sequelize.define("User", {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -16,8 +18,5 @@ const User = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     profile_pic: { type: DataTypes.STRING, isUrl: true }
   });
-  //   return User;
+  return User;
 };
-User.sync();
-
-module.exports = User;

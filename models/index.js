@@ -22,12 +22,17 @@ if (config.use_env_variable) {
 
 fs.readdirSync(__dirname)
   .filter(file => {
+    console.log("DEBUG file = " + file);
     return (
       file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
     );
   })
   .forEach(file => {
     const model = sequelize["import"](path.join(__dirname, file));
+    console.log("DEBUG model definition ::: " + path.join(__dirname, file));
+    console.log("DEBUG model = " + model);
+    console.log("DEBUG model.name = " + model.name);
+
     db[model.name] = model;
   });
 

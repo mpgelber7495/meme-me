@@ -1,8 +1,10 @@
-const sequelize = require("../config");
+const sequelize = require("../config/config.json");
 const { DataTypes } = require("sequelize");
 
-const Meme = (sequelize, DataTypes) => {
-  sequelize.definte("Meme", {
+let Meme;
+
+module.exports = (sequelize, DataTypes) => {
+  Meme = sequelize.define("Meme", {
     image_url: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -10,16 +12,12 @@ const Meme = (sequelize, DataTypes) => {
     }
   });
 
-  Meme.associate = function associate() {
-    Meme.belongsTo(User, {
-      foreignKey: {
-        allowNull: false
-      }
-    });
-  };
+  //   Meme.associate = function associate() {
+  //     Meme.belongsTo(User, {
+  //       foreignKey: {
+  //         allowNull: false
+  //       }
+  //     });
+  //   };
   return Meme;
 };
-
-// Meme.sync();
-
-module.exports = Meme;
