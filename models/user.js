@@ -1,22 +1,24 @@
-const sequelize = require("../models");
+const sequelize = require("../config");
 const { DataTypes } = require("sequelize");
 
-let User;
+const User = sequelize.define("User", {
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: { isEmail: true },
+    unique: true
+  },
+  nickname: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  profile_img: {
+    type: DataTypes.STRING,
+    isUrl: true
+  },
+  password: DataTypes.STRING
+});
 
-module.exports = (sequelize, DataTypes) => {
-  User = sequelize.define("User", {
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: { isEmail: true },
-      unique: true
-    },
-    nickname: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    password: DataTypes.STRING,
-    profile_pic: { type: DataTypes.STRING, isUrl: true }
-  });
-  return User;
-};
+User.sync();
+
+module.exports = User;
