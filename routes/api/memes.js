@@ -1,5 +1,6 @@
 var router = require("express").Router();
 var Meme = require("../../models/Meme");
+var Comment = require("../../models/comment");
 
 router
   .route("/")
@@ -26,6 +27,21 @@ router
   })
   .delete(async (req, res) => {
     const result = await Meme.destroy({ where: { id: req.params.id } });
+    res.json(result);
+  });
+
+router
+  .route("/:id/comments")
+  .get(async (req, res) => {
+    const comments = await Comment.findAll({
+      where: { MemeId: req.params.id }
+    });
+
+    res.json(comments);
+  })
+  .post(async (req, res) => {
+    req.body.MemeId = req.params.id;
+    const result = await Comment.create(req.body);
     res.json(result);
   });
 
