@@ -1,5 +1,5 @@
 var router = require("express").Router();
-var Meme = require("../../models/Comment");
+var Comment = require("../../models/Comment");
 
 router.get("/", async (req, res) => {
   const comments = await Comment.findAll();
