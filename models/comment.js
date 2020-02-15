@@ -1,6 +1,7 @@
 const sequelize = require("../config");
 const { DataTypes } = require("sequelize");
 const Meme = require("./meme");
+const User = require("./user");
 
 const Comment = sequelize.define("Comment", {
   text: {
@@ -15,6 +16,7 @@ Comment.associate = function associate() {
       allowNull: false
     }
   });
+  Comment.belongsTo(User, { foreignKey: { allowNull: false } });
 };
 
 Comment.associate();
