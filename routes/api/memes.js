@@ -2,7 +2,7 @@ var router = require("express").Router();
 var Meme = require("../../models/Meme");
 
 router.get("/", async (req, res) => {
-  const Memes = await Meme.findAll();
+  const memes = await Meme.findAll();
   res.json({ memes: memes });
 });
 
