@@ -21,6 +21,5 @@ Meme.associate = function associate() {
 Meme.associate();
 
 Meme.sync();
-console.log("DEBUG: " + Meme);
 
 module.exports = Meme;
