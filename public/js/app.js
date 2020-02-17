@@ -14,4 +14,18 @@ const configureClient = async () => {
 
 window.onload = async () => {
   await configureClient();
+
+  updateUI();
+};
+
+const updateUI = async () => {
+  const isAuthenticated = await auth0.isAuthenticated();
+  document.getElementById("btn-logout").disabled = !isAuthenticated;
+  document.getElementById("btn-login").disabled = isAuthenticated;
+};
+
+const login = async () => {
+  await auth0.loginWithRedirect({
+    redirect_uri: window.location.origin
+  });
 };
