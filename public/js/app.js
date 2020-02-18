@@ -16,6 +16,26 @@ window.onload = async () => {
   await configureClient();
 
   updateUI();
+
+  const isAuthenticated = await auth0.isAuthenticated();
+
+  if (isAuthenticated) {
+    // window.location.assign("/home");
+    console.log("DEBUG:: Inside of if is auth'd statement");
+    return;
+  }
+
+  const query = window.location.search;
+  if (query.includes("code=") && query.includes("state=")) {
+    // Process the login state
+    await auth0.handleRedirectCallback();
+    console.log("DEBUG:: Inside of IF query statement");
+
+    updateUI();
+
+    // Use replaceState to redirect the user away and remove the querystring parameters
+    window.history.replaceState({}, document.title, "/");
+  }
 };
 
 const updateUI = async () => {
@@ -25,7 +45,7 @@ const updateUI = async () => {
 };
 
 const login = async () => {
-  await auth0.loginWithRedirect({
+  let redirect = await auth0.loginWithRedirect({
     redirect_uri: window.location.origin
   });
 };
