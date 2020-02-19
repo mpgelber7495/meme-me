@@ -28,7 +28,7 @@ fileUpload.addEventListener("change", function(event) {
       axios({
         url: "/api/memes",
         method: "POST",
-        headers: { "Content-Type": "application/JSON" },
+        headers: { "Content-Type": "application/json" },
         data: Meme
       }).then(console.log("WAHOO"));
     })
