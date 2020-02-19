@@ -27,6 +27,7 @@ app.get("/auth_config.json", (req, res) => {
 });
 
 app.get("/auth", async (req, res) => {
+  let isAuthenticated = await auth0.isAuthenticated();
   res.render("auth");
 });
 

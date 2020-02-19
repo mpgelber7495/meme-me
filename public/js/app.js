@@ -49,3 +49,5 @@ const login = async () => {
     redirect_uri: window.location.origin
   });
 };
+
+// REFACTOR This to make it so that the auth thing is a function that takes req, res, next. Req, res, next
