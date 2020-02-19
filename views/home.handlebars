@@ -1,0 +1,25 @@
+<body>
+    <header>
+        <nav>
+            <div class="logo"><img src="../img/logo/mememe_tomorrow.gif" alt=""></div>
+        </nav>
+    </header>
+    <div class="content">
+        <div>
+            <ul>
+                {{#each Memes}}
+                <li>{{img this.image_url}}</li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+    <footer>
+    </footer>
+</body>
+<script>
+    Handlebars.registerHelper("img", function (image_url) {
+        var image_url = Handlebars.escapeExpression(image_url),
+
+        return new Handlebars.SafeString("<img src='" + image_url + "'>");
+    });
+</script>
