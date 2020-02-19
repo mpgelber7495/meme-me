@@ -13,6 +13,7 @@ const PORT = 8080;
 
 app.use(express.json());
 app.use(express.urlencoded());
+app.use(express.static("public"));
 app.use(morgan("dev"));
 app.use(require("./routes"));
 
@@ -26,6 +27,9 @@ app.get("/", async (req, res) => {
 app.get("/add-meme", async (req, res) => {
   res.render("addMeme");
 });
+
 app.listen(process.env.PORT || PORT, () => {
   console.log(`server running on ${process.env.PORT || PORT}`);
 });
+
+// USE EXPRESS.STATIC to serve all of the static assets
