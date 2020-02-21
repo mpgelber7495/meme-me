@@ -4,6 +4,8 @@ const CLOUDINARY_UPLOAD_PRESET = "ukabfmkd";
 var imgPreview = document.getElementById("img-preview");
 var fileUpload = document.getElementById("file-upload");
 
+document.getElementById("upload-new-meme").style.display = "none";
+
 fileUpload.addEventListener("change", function(event) {
   var file = event.target.files[0];
   var formData = new FormData();
