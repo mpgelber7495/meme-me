@@ -1,14 +1,24 @@
-<body>
-
-    <div class="content">
-        <div>
-            <ul>
-                {{#each memes}}
-                <li><img src="{{this.image_url}}" /></li>
-                {{/each}}
-            </ul>
+<div class="container-list">
+    <div class="columns is-variable bd-klmn-columns is-1">
+        {{#each memes}}
+        <div class="column is-3">
+            <div class="bd-notification is-primary has-text-centered">
+                <div class="card media-card random_color">
+                    <div class="card-image">
+                        <figure class="image is-4by3">
+                            <img src="{{this.image_url}}" alt="" />
+                        </figure>
+                    </div>
+                    <div class="card-content">
+                        <div class="content">
+                            INSERT TAGS HERE <a>@bulmaio</a>.
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        {{/each}}
     </div>
-    <footer>
-    </footer>
-</body>
+</div>
+<script src="/js/homeScript.js"></script>

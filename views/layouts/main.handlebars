@@ -1,23 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>MEME ME</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
-    <link rel="stylesheet" href="../public/style/style.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello Bulma!</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
 </head>
 
 <body>
-    <header>
-        <nav>
-            <div class="logo"><img src="../../img/logo/mememe_tomorrow.gif" alt="" /></div>
-        </nav>
-    </header>
-    {{{body}}}
-</body>
+    <div class="container-shader">
+        <section class="hero gradient">
+            <div class="container-bk-bg">
+                <!-- Hero head: will stick at the top -->
+                <div class="hero-head">
+                    <nav class="navbar">
+                        <div class="navbar-start">
+                            <a class="navbar-item">
+                                <img src="img/mememe_tomorrow.gif" alt="Logo" />
+                            </a>
+                        </div>
+                        <div class="navbar-end">
+                            <span class="navbar-item">
+                                <a class="button has-text-weight-bold is-primary">
+                                    <span>Upload New Meme</span>
+                                </a>
+                            </span>
+                        </div>
+                    </nav>
+                </div>
 
-</html>
+                <!-- Hero content: will be in the middle -->
+                <div class="hero-body">
+                    <div class="container has-text-centered">
+                        <h1 class="title has-text-primary mark">
+                            Make your own meme
+                        </h1>
+                        <h2 class="subtitle has-text-primary mark">
+                            Spread your memes away
+                        </h2>
+                    </div>
+                </div>
+
+                <!-- Hero footer: will stick at the bottom -->
+                <div class="hero-foot">
+                    <nav class="tabs">
+                        <div class="container">
+                            <ul>
+                                <li><a class="has-text-primary">Popular</a></li>
+                                <li><a class="has-text-primary">New</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </section>
+        {{{body}}}
+    </div>
+
+</body>
