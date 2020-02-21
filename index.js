@@ -2,6 +2,8 @@ const express = require("express");
 const morgan = require("morgan");
 const exphbs = require("express-handlebars");
 const Meme = require("./models/meme");
+const User = require("./models/user");
+const Comment = require("./models/comment");
 // const List = require("./models/list");
 
 var app = express();
@@ -20,6 +22,15 @@ app.use(require("./routes"));
 // route for displaying the homepage
 app.get("/", async (req, res) => {
   let memes = await Meme.findAll({ raw: true });
+
+  for (const meme of memes) {
+    let user = await User.findAll({ where: { id: meme.UserId } });
+    let comments = await Comment.findAll({ where: { MemeId: meme.id } });
+
+    meme.userName = user[0].nickname;
+    meme.commentCount = comments.length;
+  }
+  memes.reverse();
   res.render("home", { memes });
 });
 
