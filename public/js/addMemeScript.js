@@ -1,3 +1,5 @@
+document.getElementById("upload-new-meme").style.display = "none";
+
 var myWidget = cloudinary.createUploadWidget(
   {
     cloudName: "edwardphill",
