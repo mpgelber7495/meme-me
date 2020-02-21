@@ -10,6 +10,7 @@ const expressSession = require("express-session");
 const passport = require("passport");
 const Auth0Strategy = require("passport-auth0");
 require("dotenv").config();
+const authRouter = require("./auth");
 
 const session = {
   secret: "LoxodontaElephasMammuthusPalaeoloxodonPrimelephas",
@@ -40,10 +41,10 @@ const strategy = new Auth0Strategy(
   }
 );
 
-if (app.get("env") === "production") {
-  // Serve secure cookies, requires HTTPS
-  session.cookie.secure = true;
-}
+// if (app.get("env") === "production") {
+//   // Serve secure cookies, requires HTTPS
+//   session.cookie.secure = true;
+// }
 // End Authentication Dependencies
 var app = express();
 
@@ -66,9 +67,16 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((user, done) => {
   done(null, user);
 });
+app.use("/", authRouter);
 app.use(morgan("dev"));
 app.use(require("./routes"));
-
+const secured = (req, res, next) => {
+  if (req.user) {
+    return next();
+  }
+  req.session.returnTo = req.originalUrl;
+  res.redirect("/login");
+};
 // route for displaying the homepage
 app.get("/", async (req, res) => {
   let memes = await Meme.findAll({ raw: true });
@@ -85,12 +93,11 @@ app.get("/", async (req, res) => {
 });
 
 // route for displaying the add meme screen
-app.get("/add-meme", async (req, res) => {
-  res.render("addMeme");
+app.get("/add-meme", secured, async (req, res) => {
+  let userInfo = req.user;
+  res.render("addMeme", userInfo);
 });
 
 app.listen(process.env.PORT || PORT, () => {
   console.log(`server running on ${process.env.PORT || PORT}`);
 });
-
-// USE EXPRESS.STATIC to serve all of the static assets
