@@ -4,8 +4,47 @@ const exphbs = require("express-handlebars");
 const Meme = require("./models/meme");
 const User = require("./models/user");
 const Comment = require("./models/comment");
-// const List = require("./models/list");
+// Authentication Dependencies
+const path = require("path");
+const expressSession = require("express-session");
+const passport = require("passport");
+const Auth0Strategy = require("passport-auth0");
+require("dotenv").config();
 
+const session = {
+  secret: "LoxodontaElephasMammuthusPalaeoloxodonPrimelephas",
+  cookie: {},
+  resave: false,
+  saveUninitialized: false
+};
+
+// Passport configuration
+const strategy = new Auth0Strategy(
+  {
+    domain: process.env.AUTH0_DOMAIN,
+    clientID: process.env.AUTH0_CLIENT_ID,
+    clientSecret: process.env.AUTH0_CLIENT_SECRET,
+    callbackURL:
+      process.env.AUTH0_CALLBACK_URL || "http://localhost:8080/callback"
+  },
+  function(accessToken, refreshToken, extraParams, profile, done) {
+    /**
+     * Access tokens are used to authorize users to an API
+     * (resource server)
+     * accessToken is the token to call the Auth0 API
+     * or a secured third-party API
+     * extraParams.id_token has the JSON Web Token
+     * profile has all the information from the user
+     */
+    return done(null, profile);
+  }
+);
+
+if (app.get("env") === "production") {
+  // Serve secure cookies, requires HTTPS
+  session.cookie.secure = true;
+}
+// End Authentication Dependencies
 var app = express();
 
 app.engine("handlebars", exphbs());
@@ -16,6 +55,17 @@ const PORT = 8080;
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.static("public"));
+app.use(expressSession(session));
+passport.use(strategy);
+app.use(passport.initialize());
+app.use(passport.session());
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+  done(null, user);
+});
 app.use(morgan("dev"));
 app.use(require("./routes"));
 
