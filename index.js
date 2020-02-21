@@ -22,21 +22,15 @@ app.use(require("./routes"));
 // route for displaying the homepage
 app.get("/", async (req, res) => {
   let memes = await Meme.findAll({ raw: true });
-  memes.forEach(async (meme, index) => {
-    let user = await User.findAll(
-      { raw: true },
-      { where: { id: meme.UserId } }
-    );
-    let comments = await Comment.findAll(
-      { raw: true },
-      { where: { MemeId: meme.id } }
-    );
+
+  for (const meme of memes) {
+    let user = await User.findAll({ where: { id: meme.UserId } });
+    let comments = await Comment.findAll({ where: { MemeId: meme.id } });
+
     meme.userName = user[0].nickname;
     meme.commentCount = comments.length;
-    memes[index] = meme;
-  });
+  }
   memes.reverse();
-  console.log(memes);
   res.render("home", { memes });
 });
 
