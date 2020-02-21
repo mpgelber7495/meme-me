@@ -20,11 +20,9 @@ fileUpload.addEventListener("change", function(event) {
   })
     .then(function(res) {
       let userid = 1;
-      console.log(res);
       let Meme = {};
-      Meme.image_url = res.data.sercure_url;
+      Meme.image_url = res.data.secure_url;
       Meme.UserId = userid;
-      console.log("MEME:::::" + Meme);
       axios({
         url: "/api/memes",
         method: "POST",
@@ -32,7 +30,5 @@ fileUpload.addEventListener("change", function(event) {
         data: Meme
       }).then(console.log("WAHOO"));
     })
-    .catch(function(err) {
-      console.log(err);
-    });
+    .catch(function(err) {});
 });
