@@ -3,7 +3,7 @@
         {{#each memes}}
         <div class="column is-3">
             <div class="bd-notification is-primary has-text-centered">
-                <div class="card media-card random_color">
+                <div id="{{this.id}}" class="meme-holder-card card media-card random_color">
                     <div class="card-image">
                         <figure class="image is-4by3">
                             <img src="{{this.image_url}}" alt="" />

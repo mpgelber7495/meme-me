@@ -5,3 +5,12 @@ Array.prototype.forEach.call(elemcolor, element => {
   var random_color = colors[Math.floor(Math.random() * colors.length)];
   element.style.backgroundColor = random_color;
 });
+
+var memeHolders = document.querySelectorAll(".meme-holder-card");
+
+memeHolders.forEach(element => {
+  element.addEventListener("click", event => {
+    let memeId = event.currentTarget.id;
+    window.location = window.location.href + "meme/" + memeId;
+  });
+});

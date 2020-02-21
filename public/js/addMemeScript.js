@@ -17,7 +17,7 @@ var myWidget = cloudinary.createUploadWidget(
         method: "POST",
         headers: { "Content-Type": "application/json" },
         data: Meme
-      }).then(console.log("WAHOO"));
+      }).then(console.log("Image uploaded to CDN and to API"));
     }
   }
 );
