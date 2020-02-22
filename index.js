@@ -44,3 +44,29 @@ app.listen(process.env.PORT || PORT, () => {
 });
 
 // USE EXPRESS.STATIC to serve all of the static assets
+
+// EH Additions
+
+// Click on a meme picture
+
+// calling model to query databses end goal to retroute to return html
+
+app.get("/meme/:id", async (req, res) => {
+  let meme = await Meme.findAll({ where: { id: req.params.id } });
+
+  // Loop through individual meme info, show likes, user, comments on an individual meme
+
+  let likes = await Like.findAll({ where: { MemeId: meme.id } });
+  let user = await User.findAll({ where: { id: meme.UserId } });
+  let comments = await Comment.findAll({ where: { MemeId: meme.id } });
+  meme.likes = likes;
+  //needs more info
+  meme.user = user;
+  //needs more info
+  meme.comments = comments;
+  //needs more infom
+
+  // render handlebars that moon is working on
+  res.render({ meme });
+  // console.log meme
+});
