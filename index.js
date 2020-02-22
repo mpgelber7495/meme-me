@@ -85,19 +85,18 @@ app.get("/", async (req, res) => {
   for (const meme of memes) {
     let user = await User.findAll({ where: { id: meme.UserId } });
     let comments = await Comment.findAll({ where: { MemeId: meme.id } });
-
     meme.userName = user[0].nickname;
     meme.commentCount = comments.length;
   }
   memes.reverse();
-  console.log(memes);
   res.render("home", { memes });
 });
 
 // route for displaying the add meme screen
 app.get("/add-meme", secured, async (req, res) => {
-  let userInfo = req.user;
-  res.render("addMeme", userInfo);
+  let userInfo = await req.user;
+  console.log(userInfo);
+  res.render("addMeme");
 });
 
 app.listen(process.env.PORT || PORT, () => {

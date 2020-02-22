@@ -6,6 +6,7 @@ var myWidget = cloudinary.createUploadWidget(
     uploadPreset: "ukabfmkd"
   },
   (error, result) => {
+    if (err) throw err;
     if (!error && result && result.event === "success") {
       console.log("Done! Here is the image info: ", result.info);
       let userid = 1;
