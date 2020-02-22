@@ -30,9 +30,16 @@
                                 </a>
                             </span>
                             <span class="navbar-item">
+                                {{#if user}}
+                                <img src="{{picture}}" alt="{{name}}" />
+                                <a href="/logout" id="log-in-or-out" class="button has-text-weight-bold is-secondary">
+                                    <span>Logout</span>
+                                </a>
+                                {{else}}
                                 <a href="/login" id="log-in-or-out" class="button has-text-weight-bold is-primary">
                                     <span>Login</span>
                                 </a>
+                                {{/if}}
                             </span>
                         </div>
                     </nav>

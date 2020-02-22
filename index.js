@@ -13,6 +13,8 @@ const Auth0Strategy = require("passport-auth0");
 require("dotenv").config();
 const authRouter = require("./auth");
 
+let userObject = {};
+
 const session = {
   secret: "LoxodontaElephasMammuthusPalaeoloxodonPrimelephas",
   cookie: {},
@@ -38,6 +40,10 @@ const strategy = new Auth0Strategy(
      * extraParams.id_token has the JSON Web Token
      * profile has all the information from the user
      */
+    userObject.auth0_id = profile.user_id;
+    userObject.email = profile.emails[0].value;
+    userObject.nickname = profile.nickname;
+
     return done(null, profile);
   }
 );
@@ -81,6 +87,7 @@ const secured = (req, res, next) => {
 
 // route for displaying the homepage
 app.get("/", async (req, res) => {
+  console.log("Easy to find me!!   ", req.user);
   let memes = await Meme.findAll({ raw: true });
   for (const meme of memes) {
     let user = await User.findAll({ where: { id: meme.UserId } });
@@ -88,8 +95,9 @@ app.get("/", async (req, res) => {
     meme.userName = user[0].nickname;
     meme.commentCount = comments.length;
   }
+
   memes.reverse();
-  res.render("home", { memes });
+  res.render("home", { memes, user: req.user });
 });
 
 // route for displaying the add meme screen
