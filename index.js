@@ -1,4 +1,5 @@
 const express = require("express");
+const models = require("./models");
 const morgan = require("morgan");
 const exphbs = require("express-handlebars");
 const Meme = require("./models/meme");
@@ -77,10 +78,10 @@ const secured = (req, res, next) => {
   req.session.returnTo = req.originalUrl;
   res.redirect("/login");
 };
+
 // route for displaying the homepage
 app.get("/", async (req, res) => {
   let memes = await Meme.findAll({ raw: true });
-
   for (const meme of memes) {
     let user = await User.findAll({ where: { id: meme.UserId } });
     let comments = await Comment.findAll({ where: { MemeId: meme.id } });
@@ -89,6 +90,7 @@ app.get("/", async (req, res) => {
     meme.commentCount = comments.length;
   }
   memes.reverse();
+  console.log(memes);
   res.render("home", { memes });
 });
 

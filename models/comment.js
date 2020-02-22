@@ -10,16 +10,16 @@ const Comment = sequelize.define("Comment", {
   }
 });
 
-Comment.associate = function associate() {
-  Comment.belongsTo(Meme, {
-    foreignKey: {
-      allowNull: false
-    }
-  });
-  Comment.belongsTo(User, { foreignKey: { allowNull: false } });
-};
+// Comment.associate = function associate() {
+//   Comment.belongsTo(Meme, {
+//     foreignKey: {
+//       allowNull: false
+//     }
+//   });
+//   Comment.belongsTo(User, { foreignKey: { allowNull: false } });
+// };
 
-Comment.associate();
+// Comment.associate();
 
 Comment.sync();
 

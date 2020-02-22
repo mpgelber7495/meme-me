@@ -10,15 +10,15 @@ const Meme = sequelize.define("Meme", {
   }
 });
 
-Meme.associate = function associate() {
-  Meme.belongsTo(User, {
-    foreignKey: {
-      allowNull: false
-    }
-  });
-};
+// Meme.associate = function associate() {
+//   Meme.belongsTo(User, {
+//     foreignKey: {
+//       allowNull: false
+//     }
+//   });
+// };
 
-Meme.associate();
+// Meme.associate();
 
 Meme.sync();
 
