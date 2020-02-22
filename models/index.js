@@ -21,6 +21,11 @@ Meme.associate = function associate() {
       allowNull: false
     }
   });
+  Meme.hasMany(Comment, {
+    foreignKey: {
+      allowNull: false
+    }
+  });
 };
 
 Comment.associate = function associate() {
