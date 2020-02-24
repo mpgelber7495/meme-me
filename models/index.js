@@ -57,4 +57,4 @@ const runAssociations = () => {
   Like.associate();
 };
 
-module.exports = runAssociations();
+module.exports = runAssociations;
