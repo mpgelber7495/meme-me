@@ -50,11 +50,11 @@ Like.associate = function associate() {
   });
 };
 
-const runAssociations = function runAssociations() {
+const runAssociations = () => {
   User.associate();
   Meme.associate();
   Comment.associate();
   Like.associate();
 };
 
-module.exports = runAssociations;
+module.exports = runAssociations();
