@@ -1,5 +1,5 @@
 const express = require("express");
-const models = require("./models");
+// const models = require("./models");
 const morgan = require("morgan");
 const exphbs = require("express-handlebars");
 const Meme = require("./models/meme");
