@@ -99,7 +99,7 @@ app.get("/", async (req, res) => {
   memes.reverse();
   res.render("home", { memes, user: req.user });
 });
-
+models();
 // route for displaying the add meme screen
 app.get("/add-meme", async (req, res) => {
   let userInfo = await req.user;
