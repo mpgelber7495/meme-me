@@ -100,7 +100,7 @@ app.get("/", async (req, res) => {
   res.render("home", { memes, user: req.user });
 });
 models();
-// route for displaying the add meme screen
+// route for displaying the add meme screen a
 app.get("/add-meme", async (req, res) => {
   let userInfo = await req.user;
   console.log(userInfo);
