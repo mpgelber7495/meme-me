@@ -39,6 +39,12 @@ app.get("/add-meme", async (req, res) => {
   res.render("addMeme");
 });
 
+app.get("/meme/:id", async (req, res) => {
+  let meme = await Meme.findAll({ where: { id: req.params.id }, raw: true });
+  console.log(meme[0]);
+  res.render("memeById", meme[0]);
+});
+
 app.listen(process.env.PORT || PORT, () => {
   console.log(`server running on ${process.env.PORT || PORT}`);
 });
