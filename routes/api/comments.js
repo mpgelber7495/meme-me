@@ -1,5 +1,5 @@
 var router = require("express").Router();
-var Comment = require("../../models/Comment");
+var Comment = require("../../models/comment");
 var Like = require("../../models/like");
 
 router
