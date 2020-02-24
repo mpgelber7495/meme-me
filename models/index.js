@@ -50,9 +50,7 @@ Like.associate = function associate() {
   });
 };
 
-module.exports = () => {
-  User.associate();
-  Meme.associate();
-  Comment.associate();
-  Like.associate();
-};
+User.associate();
+Meme.associate();
+Comment.associate();
+Like.associate();
