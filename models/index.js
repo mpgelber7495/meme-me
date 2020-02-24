@@ -1,9 +1,10 @@
-const Meme = require("./meme");
 const User = require("./user");
+const Meme = require("./meme");
 const Comment = require("./comment");
 const Like = require("./like");
 
 User.associate = function associate() {
+  console.log("RUNNING ASSOCIATE FUNCTION FOR USER");
   User.hasMany(Meme, {
     foreignKey: { allowNull: false }
   });
@@ -50,9 +51,7 @@ Like.associate = function associate() {
   });
 };
 
-module.exports = () => {
-  User.associate();
-  Meme.associate();
-  Comment.associate();
-  Like.associate();
-};
+User.associate();
+Meme.associate();
+Comment.associate();
+Like.associate();
