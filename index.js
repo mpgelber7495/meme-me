@@ -85,6 +85,7 @@ const secured = (req, res, next) => {
   res.redirect("/login");
 };
 
+models.runAssociations();
 // route for displaying the homepage
 app.get("/", async (req, res) => {
   console.log("Easy to find me!!   ", req.user);
