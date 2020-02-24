@@ -101,7 +101,7 @@ app.get("/", async (req, res) => {
 });
 
 // route for displaying the add meme screen
-app.get("/add-meme", secured, async (req, res) => {
+app.get("/add-meme", async (req, res) => {
   let userInfo = await req.user;
   console.log(userInfo);
   res.render("addMeme");
