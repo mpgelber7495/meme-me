@@ -2,9 +2,10 @@ const express = require("express");
 // const models = require("./models");
 const morgan = require("morgan");
 const exphbs = require("express-handlebars");
-const Meme = require("./models/meme");
 const User = require("./models/user");
+const Meme = require("./models/meme");
 const Comment = require("./models/comment");
+const Like = require("./models/like");
 // Authentication Dependencies
 const path = require("path");
 const expressSession = require("express-session");
