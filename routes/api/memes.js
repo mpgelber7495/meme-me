@@ -1,5 +1,5 @@
 var router = require("express").Router();
-var Meme = require("../../models/Meme");
+var Meme = require("../../models/meme");
 var Comment = require("../../models/comment");
 
 router
