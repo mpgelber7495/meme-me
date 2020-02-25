@@ -16,6 +16,11 @@ router.get("/:id", async (req, res) => {
   res.json(user);
 });
 
+router.get("/by-email/:email", async (req, res) => {
+  const user = await User.findAll({ where: { email: req.params.email } });
+  res.json(user);
+});
+
 router.put("/:id", async (req, res) => {
   const result = await User.update(req.body, { where: { id: req.params.id } });
   res.json(result);
@@ -27,26 +32,3 @@ router.delete("/:id", async (req, res) => {
 });
 
 module.exports = router;
-
-function create(user, callback) {
-  const mysql = require("mysql2");
-  const bcrypt = require("bcrypt");
-
-  bcrypt.hash(user.password, 10, function(err, hash) {
-    if (err) return callback(err);
-
-    const insert = {
-      password: hash,
-      email: user.email,
-      nickname: user.nickname
-    };
-
-    fetch("http://meme-me-app.herokuapp.com/api/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(insert)
-    });
-  });
-}

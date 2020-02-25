@@ -105,7 +105,7 @@ app.get("/", async (req, res) => {
 app.get("/add-meme", async (req, res) => {
   let userInfo = await req.user;
   console.log(userInfo);
-  res.render("addMeme");
+  res.render("addMeme", { user: req.user });
 });
 
 app.get("/meme/:id", async (req, res) => {
