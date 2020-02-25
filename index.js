@@ -49,10 +49,10 @@ const strategy = new Auth0Strategy(
   }
 );
 
-// if (app.get("env") === "production") {
-//   // Serve secure cookies, requires HTTPS
-//   session.cookie.secure = true;
-// }
+if (process.env.NODE_ENV === "production") {
+  // Serve secure cookies, requires HTTPS
+  session.cookie.secure = true;
+}
 // End Authentication Dependencies
 var app = express();
 
