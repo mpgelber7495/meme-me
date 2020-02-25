@@ -42,6 +42,25 @@ body {
   background-color: white;
 }
 
+/* Style for Text modification */
+#black {
+  background-color: black;
+}
+#red {
+  background-color: firebrick;
+}
+#green {
+  background-color: green;
+}
+#blue {
+  background-color: blue;
+}
+.is-rounded {
+  margin-left: 5px;
+}
+
+/* Upload Cursor */
+
 #upload_widget {
   cursor: url("https://res.cloudinary.com/edwardphill/image/upload/v1582251629/meme-me/oqjch8c4kd3ectryrnvm.png"),
     auto;
