@@ -9,6 +9,12 @@ router
     res.json({ memes: memes });
   })
   .post(async (req, res) => {
+    console.log(req.user);
+    if (req.user) {
+      req.body.UserId = req.user.id;
+    }
+    console.log(req.body);
+
     const result = await Meme.create(req.body);
     res.json(result);
   });

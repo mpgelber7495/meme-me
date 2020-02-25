@@ -78,6 +78,7 @@ passport.deserializeUser((user, done) => {
 app.use("/", authRouter);
 app.use(morgan("dev"));
 app.use(require("./routes"));
+
 const secured = (req, res, next) => {
   if (req.user) {
     return next();
