@@ -5,26 +5,21 @@ function login(email, password, callback) {
 
   axios
     .get("http://meme-me-app.herokuapp.com/api/users/by-email/" + [email])
-    .then(function(response) {});
+    .then(function(response) {
+      if (response.length === 0) {
+        return callback(new WrongUsernameOrPasswordError(email));
+      }
+      const user = response[0];
 
-  const query =
-    "SELECT id, nickname, email, password FROM Users WHERE email = ?";
+      bcrypt.compare(password, user.password, function(err, isValid) {
+        if (err || !isValid)
+          return callback(err || new WrongUsernameOrPasswordError(email));
 
-  connection.query(query, [email], function(err, results) {
-    if (err) return callback(err);
-    if (results.length === 0)
-      return callback(new WrongUsernameOrPasswordError(email));
-    const user = results[0];
-
-    bcrypt.compare(password, user.password, function(err, isValid) {
-      if (err || !isValid)
-        return callback(err || new WrongUsernameOrPasswordError(email));
-
-      callback(null, {
-        user_id: user.id.toString(),
-        nickname: user.nickname,
-        email: user.email
+        callback(null, {
+          user_id: user.id.toString(),
+          nickname: user.nickname,
+          email: user.email
+        });
       });
     });
-  });
 }
