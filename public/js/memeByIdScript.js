@@ -1,3 +1,11 @@
+var fontsize = 30;
+var fonttype = "Impact";
+var fontstyle = "";
+var fontfill = "white";
+var fontstroke = 0;
+var canvas = document.querySelector("canvas");
+var ctx = canvas.getContext("2d");
+
 function textChangeListener(evt) {
   var id = evt.target.id;
   var text = evt.target.value;
@@ -13,16 +21,15 @@ function textChangeListener(evt) {
 
 function redrawMeme(image, topLine, bottomLine) {
   // Get Canvas2DContext
-  var canvas = document.querySelector("canvas");
-  var ctx = canvas.getContext("2d");
+
   if (image != null) ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
 
   // Text attributes
-  ctx.font = "30pt Impact";
+  ctx.font = `${fontstyle} ${fontsize}pt ${fonttype}`;
   ctx.textAlign = "center";
-  ctx.strokeStyle = "black";
-  ctx.lineWidth = 3;
-  ctx.fillStyle = "white";
+  //   ctx.strokeStyle = fontcolor;
+  ctx.lineWidth = fontstroke;
+  ctx.fillStyle = fontfill;
 
   if (topLine != null) {
     ctx.fillText(topLine, canvas.width / 2, 40);
@@ -35,16 +42,30 @@ function redrawMeme(image, topLine, bottomLine) {
   }
 }
 
-function changeFont() {
-  var canvas = document.querySelector("canvas");
-  var ctx = canvas.getContext("2d");
-  const font = "Impact";
-  switch (font) {
-    case script:
-      ctx.font = "30pt Great Vibes";
+function changeFont(value) {
+  switch (value) {
+    case "impact":
+      fontstyle = "Normal";
+      fonttype = "Impact";
       break;
-    case typewriter:
+    case "arial":
+      fontstyle = "Normal";
+      fonttype = "Arial";
+      break;
+    case "comic":
+      fontstyle = "Normal";
+      fonttype = "Comic Sans MS";
+      break;
+    case "cursive":
+      fontstyle = "Normal";
+      fonttype = "Cursive";
+      break;
+    case "italic":
+      fontstyle = "Italic";
+      fonttype = "Arial";
+      break;
   }
+  redrawMeme(window.imageSrc, window.topLineText, window.bottomLineText);
 }
 
 function saveFile() {
@@ -57,8 +78,8 @@ function handleFileSelect(evt) {
   // Create an image object
   var image = new Image();
   image.onload = function() {
-    console.log("this", document.getElementById("img-src").src);
-    window.imageSrc = document.getElementById("img-src");
+    console.log("this", this);
+    window.imageSrc = this;
     redrawMeme(window.imageSrc, null, null);
   };
 
@@ -69,6 +90,9 @@ function handleFileSelect(evt) {
   console.log(image.src);
 }
 
+function consoleThis() {
+  console.log(this);
+}
 window.topLineText = "";
 window.bottomLineText = "";
 var input1 = document.getElementById("topLineText");
@@ -77,3 +101,21 @@ input1.oninput = textChangeListener;
 input2.oninput = textChangeListener;
 handleFileSelect();
 document.querySelector("button").addEventListener("click", saveFile, false);
+document.addEventListener("DOMContentLoaded", function() {
+  const buttons = document.querySelectorAll("button.typechoice");
+  for (const button of buttons) {
+    button.addEventListener("click", function(buttonvalue) {
+      buttonvalue = this.value;
+      console.log(buttonvalue);
+      changeFont(buttonvalue);
+    });
+  }
+  const colors = document.querySelectorAll("button.is-rounded");
+  for (const color of colors) {
+    color.addEventListener("click", function() {
+      fontfill = this.value;
+      console.log(fontfill);
+      redrawMeme(window.imageSrc, window.topLineText, window.bottomLineText);
+    });
+  }
+});
