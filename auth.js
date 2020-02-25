@@ -23,7 +23,6 @@ router.get(
     scope: "openid email profile"
   }),
   (req, res) => {
-    console.log("DEBUG in req session");
     res.redirect("/");
   }
 );

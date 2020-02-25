@@ -90,6 +90,7 @@ const secured = (req, res, next) => {
 // route for displaying the homepage
 app.get("/", async (req, res) => {
   console.log("Easy to find me!!   ", req.user);
+  console.log("PROCESS ENG", process.env);
   let memes = await Meme.findAll({ raw: true });
   for (const meme of memes) {
     let user = await User.findAll({ where: { id: meme.UserId } });
