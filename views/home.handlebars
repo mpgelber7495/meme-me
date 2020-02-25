@@ -3,20 +3,22 @@
         {{#each memes}}
         <div class="column is-3">
             <div class="bd-notification is-primary has-text-centered">
-                <div id="{{this.id}}" class="meme-holder-card card media-card random_color">
-                    <div class="card-image">
-                        <figure class="image is-4by3">
-                            <img src="{{this.image_url}}" alt="" />
-                        </figure>
-                    </div>
-                    <div class="card-content">
-                        <div class="content">
-                            {{this.commentCount}} Comments <br />
-                            Created By: <a href="/user/{{this.UserId}}">@{{this.userName}}</a>
-                            <br />
+                <a href="/meme/{{this.id}}">
+                    <div id="{{this.id}}" class="meme-holder-card card media-card random_color">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <img src="{{this.image_url}}" alt="" />
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="content">
+                                {{this.commentCount}} Comments <br />
+                                Created By: <a href="/user/{{this.UserId}}">@{{this.userName}}</a>
+                                <br />
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
         {{/each}}
