@@ -16,6 +16,11 @@ router.get("/:id", async (req, res) => {
   res.json(user);
 });
 
+router.get("/by-email/:email", async (req, res) => {
+  const user = await User.findAll({ where: { email: req.params.email } });
+  res.json(user);
+});
+
 router.put("/:id", async (req, res) => {
   const result = await User.update(req.body, { where: { id: req.params.id } });
   res.json(result);

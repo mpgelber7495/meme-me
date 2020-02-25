@@ -1,10 +1,11 @@
 const express = require("express");
-const models = require("./models");
+// const models = require("./models");
 const morgan = require("morgan");
 const exphbs = require("express-handlebars");
-const Meme = require("./models/meme");
 const User = require("./models/user");
+const Meme = require("./models/meme");
 const Comment = require("./models/comment");
+const Like = require("./models/like");
 // Authentication Dependencies
 const path = require("path");
 const expressSession = require("express-session");
@@ -29,7 +30,7 @@ const strategy = new Auth0Strategy(
     clientID: process.env.AUTH0_CLIENT_ID,
     clientSecret: process.env.AUTH0_CLIENT_SECRET,
     callbackURL:
-      process.env.AUTH0_CALLBACK_URL || "http://localhost:8080/callback"
+      process.env.AUTH0_CALLBACK_URL || "http://localhost:5000/callback"
   },
   function(accessToken, refreshToken, extraParams, profile, done) {
     /**
@@ -77,6 +78,7 @@ passport.deserializeUser((user, done) => {
 app.use("/", authRouter);
 app.use(morgan("dev"));
 app.use(require("./routes"));
+
 const secured = (req, res, next) => {
   if (req.user) {
     return next();
@@ -87,7 +89,6 @@ const secured = (req, res, next) => {
 
 // route for displaying the homepage
 app.get("/", async (req, res) => {
-  console.log("Easy to find me!!   ", req.user);
   let memes = await Meme.findAll({ raw: true });
   for (const meme of memes) {
     let user = await User.findAll({ where: { id: meme.UserId } });
@@ -100,11 +101,11 @@ app.get("/", async (req, res) => {
   res.render("home", { memes, user: req.user });
 });
 
-// route for displaying the add meme screen
+// route for displaying the add meme screen a
 app.get("/add-meme", async (req, res) => {
   let userInfo = await req.user;
   console.log(userInfo);
-  res.render("addMeme");
+  res.render("addMeme", { user: req.user });
 });
 
 app.get("/meme/:id", async (req, res) => {

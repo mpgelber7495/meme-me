@@ -1,5 +1,5 @@
 var router = require("express").Router();
-var Like = require("../../models/Like");
+var Like = require("../../models/like");
 
 router.get("/", async (req, res) => {
   const likes = await Like.findAll();
