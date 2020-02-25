@@ -39,6 +39,8 @@ router.get("/callback", (req, res, next) => {
       if (err) {
         return next(err);
       }
+      console.log("DEBUG: return to: ", req.session.returnTo);
+      console.log("DEBUG req.session: ", req.session);
       const returnTo = req.session.returnTo;
       delete req.session.returnTo;
       res.redirect(returnTo || "/");
