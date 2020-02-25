@@ -44,8 +44,7 @@ router.get("/callback", (req, res, next) => {
       console.log("DEBUG req.session: ", req.session);
       const returnTo = req.session.returnTo;
       delete req.session.returnTo;
-      // res.redirect(returnTo || "/");
-      res.redirect("/");
+      res.redirect(returnTo || "/");
     });
   })(req, res, next);
 });
