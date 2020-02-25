@@ -33,6 +33,7 @@ const strategy = new Auth0Strategy(
       process.env.AUTH0_CALLBACK_URL || "http://localhost:5000/callback"
   },
   function(accessToken, refreshToken, extraParams, profile, done) {
+    console.log("DEBUG process.env.AUTH0_CALLBACK_URL", callbackURL);
     /**
      * Access tokens are used to authorize users to an API
      * (resource server)
