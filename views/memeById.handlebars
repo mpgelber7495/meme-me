@@ -1,20 +1,48 @@
 <div class="container-list">
-    <div class="columns ">
-        <div class="column is-two-thirds">
+    <div class="columns is-9">
+        <div class="column is-6">
             <br />
             <div id="image-container">
                 <img src="{{this.image_url}}" alt="" style="display: none;" id="img-src" />
-                <canvas width="500" height="500" id="canvas"></canvas>
+                <canvas width="300" height="300" id="canvas"></canvas>
             </div>
         </div>
-        <div class="column">
-            <div class="column">
-                <span>Top Line:</span><br />
-                <input id="topLineText" type="text" /><br />
-                <span>Bottom Line:</span><br />
-                <input id="bottomLineText" type="text" /><br />
-                <button id="saveBtn">Save</button>
-            </div>
+        <div class="column is-5">
+            <!-- <span>Top Line:</span> -->
+            <br />
+            <input id="topLineText" class="input is-primary" type="text" placeholder="Top Line" /><br />
+            <!-- <span>Bottom Line:</span> -->
+            <br />
+            <input id="bottomLineText" class="input is-primary" type="text" placeholder="Bottom Line" />
+            <br /><br />
+            <!-- <button id="sizeUp">+</button>
+              <button id="sizeDw">-</button> -->
+            <button class="typechoice button is-primary is-outlined" id="impact" value="impact">
+                Impact
+            </button>
+            <button class="typechoice button is-primary is-outlined" id="arial" value="arial">
+                Arial
+            </button>
+            <button class="typechoice button is-primary is-outlined" id="comic" value="comic">
+                Comic Sans
+            </button>
+            <button class="typechoice button is-primary is-outlined" id="cursive" value="cursive">
+                Cursive
+            </button>
+            <button class="typechoice button is-primary is-outlined" id="italic" value="italic">
+                Italic
+            </button>
+            <br /><br />
+            <button id="white" value="white" class="button is-rounded"></button>
+            <button id="black" value="black" class="button is-rounded"></button>
+            <button id="red" value="red" class="button is-rounded"></button>
+            <button id="blue" value="blue" class="button is-rounded"></button>
+            <button id="green" value="green" class="button is-rounded"></button>
+            <br />
+            <br />
+            <button class="button is-link is-outlined" id="saveBtn">
+                Save
+            </button>
         </div>
     </div>
 </div>
