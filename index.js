@@ -1,5 +1,6 @@
 const express = require("express");
 // const models = require("./models");
+var cors = require("cors");
 const morgan = require("morgan");
 const exphbs = require("express-handlebars");
 const User = require("./models/user");
@@ -13,8 +14,6 @@ const passport = require("passport");
 const Auth0Strategy = require("passport-auth0");
 require("dotenv").config();
 const authRouter = require("./auth");
-
-let userObject = {};
 
 const session = {
   secret: "LoxodontaElephasMammuthusPalaeoloxodonPrimelephas",
@@ -41,21 +40,21 @@ const strategy = new Auth0Strategy(
      * extraParams.id_token has the JSON Web Token
      * profile has all the information from the user
      */
-    userObject.auth0_id = profile.user_id;
-    userObject.email = profile.emails[0].value;
-    userObject.nickname = profile.nickname;
+
+    console.log(`[DEBUG] passport.authenticate :: profile = ${profile}`);
 
     return done(null, profile);
   }
 );
 
-// if (app.get("env") === "production") {
-//   // Serve secure cookies, requires HTTPS
-//   session.cookie.secure = true;
-// }
+if (process.env.NODE_ENV === "production") {
+  // Serve secure cookies, requires HTTPS
+  session.cookie.secure = true;
+}
 // End Authentication Dependencies
 var app = express();
 
+app.use(cors());
 app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");
 
@@ -112,6 +111,10 @@ app.get("/meme/:id", async (req, res) => {
   let meme = await Meme.findAll({ where: { id: req.params.id }, raw: true });
   console.log(meme[0]);
   res.render("memeById", meme[0]);
+});
+
+app.get("/me", (req, res) => {
+  res.json({ user: req.user });
 });
 
 app.listen(process.env.PORT || PORT, () => {
