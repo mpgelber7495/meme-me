@@ -1,6 +1,7 @@
 var router = require("express").Router();
 var Meme = require("../../models/meme");
 var Comment = require("../../models/comment");
+var User = require("../../models/user");
 
 router
   .route("/")
@@ -11,7 +12,8 @@ router
   .post(async (req, res) => {
     console.log(req.user);
     if (req.user) {
-      req.body.UserId = req.user.id;
+      let userId = req.user.id.split("|")[1];
+      req.body.UserId = userId;
     }
     console.log(req.body);
 
