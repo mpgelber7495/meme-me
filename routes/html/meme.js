@@ -1,10 +1,42 @@
 var router = require("express").Router();
 var Meme = require("../../models/meme");
+var User = require("../../models/user");
+var Comment = require("../../models/comment");
+var Like = require("../../models/like");
 
 router.get("/:id", async (req, res) => {
   let meme = await Meme.findAll({ where: { id: req.params.id }, raw: true });
+  let user = await User.findAll({ where: { id: meme[0].UserId }, raw: true });
+  let comments = await Comment.findAll({
+    where: { MemeId: req.params.id },
+    raw: true
+  });
+  for (let i = 0; i < comments.length; i++) {
+    let likes = await Like.findAll({
+      where: { CommentId: comments[i].id },
+      raw: true
+    });
+    comments[i].likes = likes;
+    let user = await User.findAll({
+      where: { id: comments[i].UserId },
+      raw: true
+    });
+    comments[i].user = user[0].nickname;
+  }
+  //   let likes = await Like.findAll({
+  //     where: { MemeId: req.params.id },
+  //     raw: true
+  //   });
+  console.log("USER:: ", user);
+  console.log("COMMENTS:: ", comments);
+  console.log("LIKES::", comments[0].likes);
+  //   console.log("LIKES:: ", likes);
   console.log(meme[0]);
-  res.render("memeById", meme[0]);
+  res.render("memeById", {
+    meme: meme[0],
+    creatingUser: user,
+    comments: comments
+  });
 });
 
 module.exports = router;
