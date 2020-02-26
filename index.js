@@ -1,5 +1,6 @@
 const express = require("express");
 // const models = require("./models");
+var cors = require("cors");
 const morgan = require("morgan");
 const exphbs = require("express-handlebars");
 const User = require("./models/user");
@@ -53,6 +54,7 @@ if (process.env.NODE_ENV === "production") {
 // End Authentication Dependencies
 var app = express();
 
+app.use(cors());
 app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");
 
