@@ -58,7 +58,12 @@ body {
 .is-rounded {
   margin-left: 5px;
 }
-
+.sizechange {
+  margin-bottom: 5px;
+}
+.typechoice {
+  margin-bottom: 5px;
+}
 /* Upload Cursor */
 
 #upload_widget {
