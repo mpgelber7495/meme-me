@@ -158,9 +158,6 @@ addLikeButtons.click(event => {
     headers: { "Content-Type": "application/json" },
     data: like
   }).then(() => {
-    setTimeout(() => {
-      console.log("Like added!");
-    }, 500);
-    window.location.reload;
+    window.location.reload(true);
   });
 });
