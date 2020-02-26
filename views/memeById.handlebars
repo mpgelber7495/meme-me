@@ -17,22 +17,28 @@
             <br /><br />
             <!-- <button id="sizeUp">+</button>
               <button id="sizeDw">-</button> -->
-            <button class="typechoice button is-primary is-outlined" id="impact" value="impact">
+            <button class="typechoice button is-primary is-outlined p-b-sm" id="impact" value="impact">
                 Impact
             </button>
-            <button class="typechoice button is-primary is-outlined" id="arial" value="arial">
+            <button class="typechoice button is-primary is-outlined p-b-sm" id="arial" value="arial">
                 Arial
             </button>
-            <button class="typechoice button is-primary is-outlined" id="comic" value="comic">
+            <button class="typechoice button is-primary is-outlined p-b-sm" id="comic" value="comic">
                 Comic Sans
             </button>
-            <button class="typechoice button is-primary is-outlined" id="cursive" value="cursive">
+            <button class="typechoice button is-primary is-outlined p-b-sm" id="cursive" value="cursive">
                 Cursive
             </button>
-            <button class="typechoice button is-primary is-outlined" id="italic" value="italic">
+            <button class="typechoice button is-primary is-outlined p-b-sm" id="italic" value="italic">
                 Italic
             </button>
-            <br /><br />
+            <br /><br>
+            <button class="sizechange button is-success is-outlined p-b-sm" id="plus" value="plus">
+                +
+            </button>
+            <button class="sizechange button is-success is-outlined p-b-sm" id="minus" value="minus">
+                -
+            </button><br /><br>
             <button id="white" value="white" class="button is-rounded"></button>
             <button id="black" value="black" class="button is-rounded"></button>
             <button id="red" value="red" class="button is-rounded"></button>
@@ -40,9 +46,33 @@
             <button id="green" value="green" class="button is-rounded"></button>
             <br />
             <br />
-            <button class="button is-link is-outlined" id="saveBtn">
-                Save
-            </button>
+            <a id="downloadBtn" download="meme-me_{{this.id}}.png" href="#" class="button is-link is-outlined">
+                Download your meme
+            </a>
+            <a id="postBtn" href="#" class="button is-danger is-outlined">
+                Post your meme
+            </a>
+        </div>
+    </div>
+    <div class="columns is-9">
+        <div class="column is-3">
+            <div class="has-text-centered">
+                <div class="card media-card random_color">
+                    <div class="card-image">
+                        <figure class="image is-3by3">
+                            <img src="" id="saved" alt="Placeholder image" />
+                        </figure>
+                    </div>
+                    {{!-- <div class="card-content">
+                        <div class="content">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Phasellus nec iaculis mauris. <a>@bulmaio</a>.
+                            <a href="#">#css</a> <a href="#">#responsive</a>
+                            <br />
+                        </div>
+                    </div> --}}
+                </div>
+            </div>
         </div>
     </div>
 </div>
