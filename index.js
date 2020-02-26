@@ -3,10 +3,6 @@ const express = require("express");
 var cors = require("cors");
 const morgan = require("morgan");
 const exphbs = require("express-handlebars");
-const User = require("./models/user");
-const Meme = require("./models/meme");
-const Comment = require("./models/comment");
-const Like = require("./models/like");
 // Authentication Dependencies
 const path = require("path");
 const expressSession = require("express-session");
@@ -85,33 +81,6 @@ const secured = (req, res, next) => {
   req.session.returnTo = req.originalUrl;
   res.redirect("/login");
 };
-
-// route for displaying the homepage
-app.get("/", async (req, res) => {
-  let memes = await Meme.findAll({ raw: true });
-  for (const meme of memes) {
-    let user = await User.findAll({ where: { id: meme.UserId } });
-    let comments = await Comment.findAll({ where: { MemeId: meme.id } });
-    meme.userName = user[0].nickname;
-    meme.commentCount = comments.length;
-  }
-
-  memes.reverse();
-  res.render("home", { memes, user: req.user });
-});
-
-// route for displaying the add meme screen a
-app.get("/add-meme", async (req, res) => {
-  let userInfo = await req.user;
-  console.log(userInfo);
-  res.render("addMeme", { user: req.user });
-});
-
-app.get("/meme/:id", async (req, res) => {
-  let meme = await Meme.findAll({ where: { id: req.params.id }, raw: true });
-  console.log(meme[0]);
-  res.render("memeById", meme[0]);
-});
 
 app.get("/me", (req, res) => {
   res.json({ user: req.user });
