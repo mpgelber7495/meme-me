@@ -87,12 +87,15 @@
         <div class="message-body">
             {{this.text}}
             <br /><br />
-            Likes: {{this.likes}}
-            Dislikes: {{this.dislikes}}
+            Likes: {{this.likes}} <button class="add-like" data-likebool="1" data-commentid="{{this.id}}">like</button>
+            <br />
+            Dislikes: {{this.dislikes}} <button class="add-like" data-likebool="0"
+                data-commentid="{{this.id}}">dislike</button>
         </div>
     </article>
     <br />
 </div>
 {{/each}}
 </div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="/js/memeByIdScript.js"></script>
