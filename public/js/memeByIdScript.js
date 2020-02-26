@@ -68,10 +68,6 @@ function changeFont(value) {
   redrawMeme(window.imageSrc, window.topLineText, window.bottomLineText);
 }
 
-function saveFile() {
-  window.open(document.querySelector("canvas").toDataURL());
-}
-
 function handleFileSelect(evt) {
   var canvasWidth = 500;
   var canvasHeight = 500;
@@ -84,15 +80,29 @@ function handleFileSelect(evt) {
   };
 
   //   // Set image data to background image.
-  //   image.src = "https://mdn.mozillademos.org/files/5397/rhino.jpg";
-  //   console.log(image.src);
+  image.setAttribute("crossorigin", "anonymous");
   image.src = document.getElementById("img-src").src;
   console.log(image.src);
 }
 
-function consoleThis() {
-  console.log(this);
-}
+// Download the image
+var dlbutton = document.getElementById("downloadBtn");
+dlbutton.addEventListener("click", function(e) {
+  var dataURL = canvas.toDataURL();
+  console.log(dataURL);
+  dlbutton.href = dataURL;
+  document.getElementById("saved").src = dataURL;
+});
+
+//Post the image
+
+var postButton = document.getElementById("postBtn");
+postButton.addEventListener("click", function(e) {
+  var dataURL = canvas.toDataURL();
+  console.log(dataURL);
+  //dataURL is the image url
+});
+
 window.topLineText = "";
 window.bottomLineText = "";
 var input1 = document.getElementById("topLineText");
@@ -100,7 +110,7 @@ var input2 = document.getElementById("bottomLineText");
 input1.oninput = textChangeListener;
 input2.oninput = textChangeListener;
 handleFileSelect();
-document.querySelector("button").addEventListener("click", saveFile, false);
+// document.querySelector("button").addEventListener("click", saveFile, false);
 document.addEventListener("DOMContentLoaded", function() {
   const buttons = document.querySelectorAll("button.typechoice");
   for (const button of buttons) {
@@ -108,6 +118,18 @@ document.addEventListener("DOMContentLoaded", function() {
       buttonvalue = this.value;
       console.log(buttonvalue);
       changeFont(buttonvalue);
+    });
+  }
+  const sizechange = document.querySelectorAll("button.sizechange");
+  for (const size of sizechange) {
+    size.addEventListener("click", function(buttonvalue) {
+      buttonvalue = this.value;
+      if (buttonvalue === "plus") {
+        fontsize += 2;
+      } else {
+        fontsize -= 2;
+      }
+      redrawMeme(window.imageSrc, window.topLineText, window.bottomLineText);
     });
   }
   const colors = document.querySelectorAll("button.is-rounded");
