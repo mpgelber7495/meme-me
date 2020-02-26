@@ -18,7 +18,11 @@ var myWidget = cloudinary.createUploadWidget(
         method: "POST",
         headers: { "Content-Type": "application/json" },
         data: Meme
-      }).then(console.log("Image uploaded to CDN and to API"));
+      }).then(() => {
+        console.log("Image uploaded to CDN and to API");
+        alert("Noice job! Your meme is up and running!!");
+        window.location.href = "/";
+      });
     }
   }
 );
