@@ -16,7 +16,16 @@ router.get("/:id", async (req, res) => {
       where: { CommentId: comments[i].id },
       raw: true
     });
-    comments[i].likes = likes;
+    var likesLength = likes.filter(function(element) {
+      return element.up_or_down == 1;
+    });
+    var dislikesLength = likes.filter(function(element) {
+      return element.up_or_down == 0;
+    });
+
+    comments[i].likesArray = likes;
+    comments[i].likes = likesLength.length;
+    comments[i].dislikes = dislikesLength.length;
     let user = await User.findAll({
       where: { id: comments[i].UserId },
       raw: true
