@@ -23,6 +23,7 @@ router.get(
     scope: "openid email profile"
   }),
   (req, res) => {
+    console.log("DEBUG :: Inside /login/passport.authenticate");
     res.redirect("/");
   }
 );
