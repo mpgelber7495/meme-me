@@ -43,14 +43,13 @@ const strategy = new Auth0Strategy(
     return done(null, profile);
   }
 );
-
+var app = express();
 if (process.env.NODE_ENV === "production") {
   // Serve secure cookies, requires HTTPS
   session.cookie.secure = true;
-  app.enable("trust proxy");
+  app.set("trust proxy", 1);
 }
 // End Authentication Dependencies
-var app = express();
 
 app.use(cors());
 app.engine("handlebars", exphbs());
