@@ -47,7 +47,7 @@ const strategy = new Auth0Strategy(
 if (process.env.NODE_ENV === "production") {
   // Serve secure cookies, requires HTTPS
   session.cookie.secure = true;
-  app.enable("trust proxy", 1);
+  app.enable("trust proxy");
 }
 // End Authentication Dependencies
 var app = express();
