@@ -141,3 +141,23 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 });
+
+// Code for liking and disliking comments
+let addLikeButtons = $(".add-like");
+
+addLikeButtons.click(event => {
+  console.log(event);
+  let commentId = event.target.dataset.commentid;
+  let like = {};
+  like.up_or_down = event.target.dataset.likebool;
+  like.CommentId = commentId;
+  like.UserId = 1;
+  axios({
+    url: "/api/likes",
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    data: like
+  }).then(() => {
+    window.location.reload(true);
+  });
+});

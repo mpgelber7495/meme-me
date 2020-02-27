@@ -3,7 +3,7 @@
         <div class="column is-6">
             <br />
             <div id="image-container">
-                <img src="{{this.image_url}}" alt="" style="display: none;" id="img-src" />
+                <img src="{{meme.image_url}}" alt="" style="display: none;" id="img-src" />
                 <canvas width="300" height="300" id="canvas"></canvas>
             </div>
         </div>
@@ -76,6 +76,26 @@
         </div>
     </div>
 </div>
+{{#each comments}}
+<div class="columns is-9">
+
+    <article class="message">
+        <div class="message-header">
+            <p>Comment By: {{this.user}}</p>
+            <button class="delete" aria-label="delete"></button>
+        </div>
+        <div class="message-body">
+            {{this.text}}
+            <br /><br />
+            Likes: {{this.likes}} <button class="add-like" data-likebool="1" data-commentid="{{this.id}}">like</button>
+            <br />
+            Dislikes: {{this.dislikes}} <button class="add-like" data-likebool="0"
+                data-commentid="{{this.id}}">dislike</button>
+        </div>
+    </article>
+    <br />
 </div>
-<script src="/js/memeByIdScript.js">
-</script>
+{{/each}}
+</div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/js/memeByIdScript.js"></script>

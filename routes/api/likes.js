@@ -7,6 +7,10 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
+  if (req.user) {
+    let userId = req.user.id.split("|")[1];
+    req.body.UserId = userId;
+  }
   const result = await Like.create(req.body);
   res.json(result);
 });
