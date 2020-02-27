@@ -38,7 +38,7 @@ router.get("/:id", async (req, res) => {
   //   });
   console.log("USER:: ", user);
   console.log("COMMENTS:: ", comments);
-  console.log("LIKES::", comments[0].likes);
+  // console.log("LIKES::", comments[0].likes);
   //   console.log("LIKES:: ", likes);
   console.log(meme[0]);
   res.render("memeById", {
