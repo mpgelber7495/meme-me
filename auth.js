@@ -34,7 +34,18 @@ router.get("/callback", (req, res, next) => {
       return next(err);
     }
     if (!user) {
-      return res.redirect("/DEBUG_OH_YEAHHH");
+      // Heroku will go here upon clicking login
+      req.logIn(user, err => {
+        if (err) {
+          return next(err);
+        }
+        console.log("DEBUG: return to: ", req.session.returnTo);
+        console.log("DEBUG req.session: ", req.session);
+        const returnTo = req.session.returnTo;
+        delete req.session.returnTo;
+        res.redirect(returnTo || "/");
+      });
+      return res.redirect("/login");
     }
     req.logIn(user, err => {
       if (err) {
