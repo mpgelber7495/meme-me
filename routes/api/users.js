@@ -7,6 +7,7 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
+  console.log("DEBUG USER BODY", req.body);
   const result = await User.create(req.body);
   res.json(result);
 });
