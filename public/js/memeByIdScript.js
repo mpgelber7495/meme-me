@@ -92,6 +92,17 @@ dlbutton.addEventListener("click", function(e) {
   console.log(dataURL);
   dlbutton.href = dataURL;
   document.getElementById("saved").src = dataURL;
+
+  // post request to add to DB
+
+  var memeId = dlbutton.getAttribute("data-meme");
+
+  var memeComment = {
+    text: dataURL, // TO-DO: save the canvas url to Cloudinary, then save Cloudinary link to meme_me_db
+    MemeId: memeId
+  };
+
+  addCommentDB(memeComment);
 });
 
 //Post the image
@@ -161,3 +172,19 @@ addLikeButtons.click(event => {
     window.location.reload(true);
   });
 });
+
+// Post request adding Comment to Comment Tabled SQL
+
+// onclick button
+const addCommentDB = comment => {
+  axios({
+    url: "/api/comments",
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    data: comment
+  }).then(() => {
+    console.log("Nice job! Your meme has been added to the SQL database.");
+    window.location.href = "/meme/:id";
+  });
+};
+// define Comment data

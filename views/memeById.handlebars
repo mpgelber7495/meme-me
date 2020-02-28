@@ -15,6 +15,8 @@
             <br />
             <input id="bottomLineText" class="input is-primary" type="text" placeholder="Bottom Line" />
             <br /><br />
+            <p>Comment By: {{this.user}}</p>
+
             <!-- <button id="sizeUp">+</button>
               <button id="sizeDw">-</button> -->
             <button class="typechoice button is-primary is-outlined p-b-sm" id="impact" value="impact">
@@ -46,7 +48,8 @@
             <button id="green" value="green" class="button is-rounded"></button>
             <br />
             <br />
-            <a id="downloadBtn" download="meme-me_{{this.id}}.png" href="#" class="button is-link is-outlined">
+            <a id="downloadBtn" data-meme="{{meme.id}}" download="meme-me_{{this.id}}.png" href="#"
+                class="button is-link is-outlined">
                 Download your meme
             </a>
             <a id="postBtn" href="#" class="button is-danger is-outlined">

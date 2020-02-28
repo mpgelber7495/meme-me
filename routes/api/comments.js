@@ -9,6 +9,10 @@ router
     res.json({ comments: comments });
   })
   .post(async (req, res) => {
+    let userId = req.user.id.split("|")[1];
+    req.body.UserId = userId;
+    console.log("req.body: ", req.body);
+
     const result = await Comment.create(req.body);
     res.json(result);
   });
