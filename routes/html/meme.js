@@ -31,8 +31,10 @@ router.get("/:id", secured, async (req, res) => {
       where: { id: comments[i].UserId },
       raw: true
     });
+
     comments[i].user = user[0].nickname;
   }
+  req.user.parsedId = req.user.id.split("|")[1];
   //   let likes = await Like.findAll({
   //     where: { MemeId: req.params.id },
   //     raw: true
