@@ -16,9 +16,9 @@ Meme-me is a social Memeing platform where users can upload pictures they think 
 
 ### Samples:
 
-<img src="./public/img/home-screen.png" style="height:200px;" />
-<img src="./public/img/meme-editor.png" style="height:200px;" /> <br/>
-Note ::: Add gif using Kap
+<img src="./meme-demo.gif" /><br/>
+<img src="./public/img/home-screen.png" style="height:150px;" />
+<img src="./public/img/meme-editor.png" style="height:150px;" /> <br/>
 
 # Technical Overview
 
