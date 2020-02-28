@@ -1,10 +1,11 @@
 var router = require("express").Router();
+var secured = require("../../utils/secured");
 var Meme = require("../../models/meme");
 var User = require("../../models/user");
 var Comment = require("../../models/comment");
 var Like = require("../../models/like");
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", secured, async (req, res) => {
   let meme = await Meme.findAll({ where: { id: req.params.id }, raw: true });
   let user = await User.findAll({ where: { id: meme[0].UserId }, raw: true });
   let comments = await Comment.findAll({
@@ -44,7 +45,8 @@ router.get("/:id", async (req, res) => {
   res.render("memeById", {
     meme: meme[0],
     creatingUser: user,
-    comments: comments
+    comments: comments,
+    user: req.user
   });
 });
 

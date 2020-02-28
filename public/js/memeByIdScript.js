@@ -151,13 +151,12 @@ addLikeButtons.click(event => {
   let like = {};
   like.up_or_down = event.target.dataset.likebool;
   like.CommentId = commentId;
-  like.UserId = 1;
   axios({
     url: "/api/likes",
     method: "POST",
     headers: { "Content-Type": "application/json" },
     data: like
-  }).then(() => {
+  }).then(response => {
     window.location.reload(true);
   });
 });
