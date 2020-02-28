@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Meme-ME</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
     <link rel="stylesheet" href="/css/style.css" />
@@ -31,9 +32,11 @@
                             </span>
                             <span class="navbar-item">
                                 {{#if user}}
-                                <img src="{{picture}}" alt="{{name}}" />
                                 <a href="/logout" id="log-in-or-out" class="button has-text-weight-bold is-secondary">
                                     <span>Logout</span>
+                                </a>
+                                <a class="navbar-item" href="/user/{{user.parsedId}}">
+                                    <img src="{{user.picture}}" class="user-profile-img" alt="{{user.name}}" />
                                 </a>
                                 {{else}}
                                 <a href="/login" id="log-in-or-out" class="button has-text-weight-bold is-primary">
@@ -72,5 +75,6 @@
         </section>
         {{{body}}}
     </div>
+
 
 </body>

@@ -9,7 +9,6 @@ var myWidget = cloudinary.createUploadWidget(
     if (error) throw error;
     if (!error && result && result.event === "success") {
       console.log("Done! Here is the image info: ", result.info);
-      let userid = 1;
       let Meme = {};
       Meme.image_url = result.info.secure_url;
       Meme.UserId = userid;

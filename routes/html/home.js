@@ -12,7 +12,9 @@ router.get("/", async (req, res) => {
     meme.userName = user[0].nickname;
     meme.commentCount = comments.length;
   }
-
+  if (req.user) {
+    req.user.parsedId = req.user.id.split("|")[1];
+  }
   memes.reverse();
   res.render("home", { memes, user: req.user });
 });
