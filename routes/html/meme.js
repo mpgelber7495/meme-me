@@ -35,14 +35,10 @@ router.get("/:id", secured, async (req, res) => {
     comments[i].user = user[0].nickname;
   }
   req.user.parsedId = req.user.id.split("|")[1];
-  //   let likes = await Like.findAll({
-  //     where: { MemeId: req.params.id },
-  //     raw: true
-  //   });
+
   console.log("USER:: ", user);
   console.log("COMMENTS:: ", comments);
-  // console.log("LIKES::", comments[0].likes);
-  //   console.log("LIKES:: ", likes);
+
   console.log(meme[0]);
   res.render("memeById", {
     meme: meme[0],
