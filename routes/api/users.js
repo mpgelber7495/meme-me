@@ -7,7 +7,8 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  console.log("DEBUG USER BODY", req.body);
+  // console.log("DEBUG req.user in post:", req.user);
+  req.body.profile_img = req.user.picture;
   const result = await User.create(req.body);
   res.json(result);
 });
