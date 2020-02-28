@@ -103,36 +103,40 @@ dlbutton.addEventListener("click", function(e) {
   };
   // sendMemeToCloud();
   addCommentDB(memeComment);
+
+// onclick send img to meme_me_db
+fileUpload.addEventListener('change', function(event))
+
 });
 
 // send new comment URL to Cloudinary --- WIP
 
-// var myComment = cloudinary.v2.uploader.upload(
-//   {
-//     cloudName: "edwardphill",
-//     uploadPreset: "ukabfmkd"
-//   },
-//   (error, result) => {
-//     if (error) throw error;
-//     if (!error && result && result.event === "success") {
-//       console.log("Done! Here is the image info: ", result.info);
-//       let userid = 1;
-//       let Meme = {};
-//       Meme.image_url = result.info.secure_url;
-//       Meme.UserId = userid;
-//       axios({
-//         url: "/api/comments",
-//         method: "POST",
-//         headers: { "Content-Type": "application/json" },
-//         data: Meme
-//       }).then(() => {
-//         console.log("meme comment uploaded to Cloudinary");
-//         alert("Nice job, your meme is up and running!");
-//         window.location.href = "/meme";
-//       });
-//     }
-//   }
-// );
+var myComment = cloudinary.v2.uploader.upload(
+  {
+    cloudName: "edwardphill",
+    uploadPreset: "ukabfmkd"
+  },
+  (error, result) => {
+    if (error) throw error;
+    if (!error && result && result.event === "success") {
+      console.log("Done! Here is the image info: ", result.info);
+      let userid = 1;
+      let Meme = {};
+      Meme.image_url = result.info.secure_url;
+      Meme.UserId = userid;
+      axios({
+        url: "/api/comments",
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        data: Meme
+      }).then(() => {
+        console.log("meme comment uploaded to Cloudinary");
+        alert("Nice job, your meme is up and running!");
+        window.location.href = "/meme";
+      });
+    }
+  }
+);
 
 //Post the image
 
