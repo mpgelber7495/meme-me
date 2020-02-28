@@ -31,9 +31,11 @@
                             </span>
                             <span class="navbar-item">
                                 {{#if user}}
-                                <img src="{{picture}}" alt="{{name}}" />
                                 <a href="/logout" id="log-in-or-out" class="button has-text-weight-bold is-secondary">
                                     <span>Logout</span>
+                                </a>
+                                <a class="navbar-item" href="/user/{{user.parsedId}}">
+                                    <img src="{{user.picture}}" class="user-profile-img" alt="{{user.name}}" />
                                 </a>
                                 {{else}}
                                 <a href="/login" id="log-in-or-out" class="button has-text-weight-bold is-primary">

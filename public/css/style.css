@@ -71,6 +71,12 @@ body {
     auto;
 }
 
+/* Profile img styling */
+.user-profile-img {
+  height: 100%;
+  border-radius: 50%;
+}
+
 /* Margin and spacing */
 
 .m-none {
