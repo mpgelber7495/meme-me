@@ -1,0 +1,55 @@
+<section class="section">
+    <div class="columns container">
+        <div class="column is-4">
+            <div class="box">
+                <article class="media">
+                    <div class="media-content">
+                        <span class="image is-128x128" id="profile-img">
+                            <img class="is-rounded" src="{{user.profile_img}}" />
+                        </span>
+                        <br />
+                        <br />
+                        <div class="content">
+                            <p>
+                                <strong>{{user.email}}</strong><br />
+                                <small>@{{user.nickname}}</small>
+
+                                <br />
+                                <br />
+                                <strong id="user-stat">Be-memer</strong>
+                            </p>
+                            <div>
+                                <progress id="profile-progress" class="progress progress-bar" value="4"
+                                    max="5"></progress>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+        <div class="column is-8">
+            <div class="box">
+                <h2>Your Uploads</h2>
+                <article class="media">
+                    <div class="columns horizontalscroll container">
+                        {{#each memes}}
+                        <div class="column is-4">
+                            <img src="{{this.image_url}}">
+                        </div>
+                        {{/each}}
+                    </div>
+                    <br />
+                </article>
+                <p>Your Memes</p>
+                <article class="media">
+                    <div class="columns horizontalscroll container">
+                        {{#each comments}}
+                        <div class="column is-4">
+                            <img src="{{this.text}}">
+                        </div>
+                        {{/each}}
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
