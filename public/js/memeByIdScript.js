@@ -96,6 +96,44 @@ dlbutton.addEventListener("click", function(e) {
 
 //Post the image
 
+var memeId = dlbutton.getAttribute("data-meme");
+
+var memeComment = {
+  text: dataURL, // TO-DO: save the canvas url to Cloudinary, then save Cloudinary link to meme_me_db
+  MemeId: memeId
+};
+// sendMemeToCloud();
+addCommentDB(memeComment);
+
+// send new comment URL to Cloudinary --- WIP
+
+var myComment = cloudinary.v2.uploader.upload(
+  {
+    cloudName: "edwardphill",
+    uploadPreset: "ukabfmkd"
+  },
+  (error, result) => {
+    if (error) throw error;
+    if (!error && result && result.event === "success") {
+      console.log("Done! Here is the image info: ", result.info);
+      let userid = 1;
+      let Meme = {};
+      Meme.image_url = result.info.secure_url;
+      Meme.UserId = userid;
+      axios({
+        url: "/api/comments",
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        data: Meme
+      }).then(() => {
+        console.log("meme comment uploaded to Cloudinary");
+        alert("Nice job, your meme is up and running!");
+        window.location.href = "/meme";
+      });
+    }
+  }
+);
+
 var postButton = document.getElementById("postBtn");
 postButton.addEventListener("click", function(e) {
   var dataURL = canvas.toDataURL();
@@ -160,3 +198,17 @@ addLikeButtons.click(event => {
     window.location.reload(true);
   });
 });
+
+// Post request adding Comment to Comment Tabled SQL
+
+const addCommentDB = comment => {
+  axios({
+    url: "/api/comments",
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    data: comment
+  }).then(() => {
+    console.log("Nice job! Your meme has been added to the SQL database.");
+    window.location.href = "/meme/:id";
+  });
+};
