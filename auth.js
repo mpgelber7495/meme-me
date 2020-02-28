@@ -23,6 +23,7 @@ router.get(
     scope: "openid email profile"
   }),
   (req, res) => {
+    console.log("DEBUG :: Inside /login/passport.authenticate");
     res.redirect("/");
   }
 );
@@ -33,6 +34,7 @@ router.get("/callback", (req, res, next) => {
       return next(err);
     }
     if (!user) {
+      // Heroku will go here upon clicking login
       return res.redirect("/login");
     }
     req.logIn(user, err => {
