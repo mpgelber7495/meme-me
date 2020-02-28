@@ -2,6 +2,9 @@ body {
   background-color: black;
   height: 100%;
 }
+a.navbar-item:hover {
+  background-color: transparent;
+}
 .gradient {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
@@ -41,6 +44,34 @@ body {
 }
 .card-content {
   background-color: white;
+}
+
+/* User page style */
+.sub-title {
+  color: #23a6d5;
+  size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.media-content {
+  text-align: center;
+  align-items: center;
+  vertical-align: middle;
+}
+#profile-img {
+  margin: auto;
+  display: inline-block;
+}
+#user-stat {
+  color: #23a6d5;
+}
+.contentwrap {
+  overflow-wrap: break-word;
+}
+
+.horizontalscroll {
+  overflow: auto;
 }
 
 /* Style for Text modification */

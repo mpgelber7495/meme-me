@@ -29,7 +29,7 @@
         </div>
         <div class="column is-8">
             <div class="box">
-                <h2>Your Uploads</h2>
+                <h1 class="sub-title">Your Uploads</h1>
                 <article class="media">
                     <div class="columns horizontalscroll container">
                         {{#each memes}}
@@ -40,12 +40,14 @@
                     </div>
                     <br />
                 </article>
-                <p>Your Memes</p>
+                <h1 class="sub-title">Your Memes</h1>
                 <article class="media">
                     <div class="columns horizontalscroll container">
                         {{#each comments}}
                         <div class="column is-4">
-                            <img src="{{this.text}}">
+                            <div class="contentwrap">
+                                {{this.text}}
+                            </div>
                         </div>
                         {{/each}}
                 </article>
