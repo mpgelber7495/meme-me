@@ -11,7 +11,6 @@ var myWidget = cloudinary.createUploadWidget(
       console.log("Done! Here is the image info: ", result.info);
       let Meme = {};
       Meme.image_url = result.info.secure_url;
-      Meme.UserId = userid;
       axios({
         url: "/api/memes",
         method: "POST",
