@@ -101,9 +101,38 @@ dlbutton.addEventListener("click", function(e) {
     text: dataURL, // TO-DO: save the canvas url to Cloudinary, then save Cloudinary link to meme_me_db
     MemeId: memeId
   };
-
+  // sendMemeToCloud();
   addCommentDB(memeComment);
 });
+
+// send new comment URL to Cloudinary --- WIP
+
+// var myComment = cloudinary.v2.uploader.upload(
+//   {
+//     cloudName: "edwardphill",
+//     uploadPreset: "ukabfmkd"
+//   },
+//   (error, result) => {
+//     if (error) throw error;
+//     if (!error && result && result.event === "success") {
+//       console.log("Done! Here is the image info: ", result.info);
+//       let userid = 1;
+//       let Meme = {};
+//       Meme.image_url = result.info.secure_url;
+//       Meme.UserId = userid;
+//       axios({
+//         url: "/api/comments",
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         data: Meme
+//       }).then(() => {
+//         console.log("meme comment uploaded to Cloudinary");
+//         alert("Nice job, your meme is up and running!");
+//         window.location.href = "/meme";
+//       });
+//     }
+//   }
+// );
 
 //Post the image
 
@@ -175,7 +204,6 @@ addLikeButtons.click(event => {
 
 // Post request adding Comment to Comment Tabled SQL
 
-// onclick button
 const addCommentDB = comment => {
   axios({
     url: "/api/comments",
@@ -187,4 +215,3 @@ const addCommentDB = comment => {
     window.location.href = "/meme/:id";
   });
 };
-// define Comment data
