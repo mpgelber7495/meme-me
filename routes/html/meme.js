@@ -34,6 +34,7 @@ router.get("/:id", secured, async (req, res) => {
 
     comments[i].user = user[0].nickname;
   }
+  comments.reverse();
   req.user.parsedId = req.user.id.split("|")[1];
 
   console.log("USER:: ", user);

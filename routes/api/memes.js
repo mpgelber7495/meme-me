@@ -49,6 +49,10 @@ router
   })
   .post(async (req, res) => {
     req.body.MemeId = req.params.id;
+    if (req.user) {
+      let userId = req.user.id.split("|")[1];
+      req.body.UserId = userId;
+    }
     const result = await Comment.create(req.body);
     res.json(result);
   });

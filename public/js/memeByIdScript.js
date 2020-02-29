@@ -98,9 +98,24 @@ dlbutton.addEventListener("click", function(e) {
 
 var postButton = document.getElementById("postBtn");
 postButton.addEventListener("click", function(e) {
-  var dataURL = canvas.toDataURL();
-  console.log(dataURL);
-  //dataURL is the image url
+  var topText = $("#topLineText").val();
+  var botText = $("#bottomLineText").val();
+
+  var text = topText + " " + botText;
+  var comment = {};
+  var memeId = document.querySelector("#img-src").dataset.memeid;
+  comment.text = text;
+  comment.MemeId = memeId;
+  console.log(comment);
+  axios({
+    url: `/api/comments`,
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    data: comment
+  }).then(() => {
+    console.log("Comment added!");
+    window.location.reload(true);
+  });
 });
 
 window.topLineText = "";
@@ -152,7 +167,7 @@ addLikeButtons.click(event => {
   like.up_or_down = event.target.dataset.likebool;
   like.CommentId = commentId;
   axios({
-    url: "/api/likes",
+    url: "/likes",
     method: "POST",
     headers: { "Content-Type": "application/json" },
     data: like
