@@ -12,6 +12,7 @@ router.get("/:id", async (req, res) => {
     where: { UserId: req.params.id },
     raw: true
   });
+
   console.log("USER:: ", user[0]);
   console.log("COMMENTS:: ", comments);
   console.log("LIKES::", comments[0]);
