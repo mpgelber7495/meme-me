@@ -160,14 +160,15 @@ document.addEventListener("DOMContentLoaded", function() {
 // Code for liking and disliking comments
 let addLikeButtons = $(".add-like");
 
-addLikeButtons.click(event => {
+$(".media-content").on("click", ".add-like", event => {
+  event.preventDefault();
   console.log(event);
-  let commentId = event.target.dataset.commentid;
+  let commentId = event.currentTarget.dataset.commentid;
   let like = {};
-  like.up_or_down = event.target.dataset.likebool;
+  like.up_or_down = event.currentTarget.dataset.likebool;
   like.CommentId = commentId;
   axios({
-    url: "/likes",
+    url: "/api/likes",
     method: "POST",
     headers: { "Content-Type": "application/json" },
     data: like
