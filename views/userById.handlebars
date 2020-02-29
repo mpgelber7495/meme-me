@@ -16,11 +16,12 @@
 
                                 <br />
                                 <br />
-                                <strong id="user-stat">Be-memer</strong>
+                                <strong id="user-stat">
+                                </strong>
                             </p>
                             <div>
-                                <progress id="profile-progress" class="progress progress-bar" value="4"
-                                    max="5"></progress>
+                                <progress id="profile-progress" class="progress progress-bar" value="{{memes.length}}"
+                                    max=""></progress>
                             </div>
                         </div>
                     </div>
@@ -55,3 +56,23 @@
         </div>
     </div>
 </section>
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+<script>
+    var progressValue = document.querySelector('#profile-progress')
+    var progressStat = ""
+
+    if (progressValue.value < 5) {
+        progressValue.max = 5;
+        progressStat = "Be-memer"
+    } else if (progressValue.value < 10) {
+        progressValue.max = 20;
+        progressStat = "Ama-memmer"
+    } else {
+        progressValue.max = 50;
+        progressStat = "Pro-memer"
+    }
+    document.querySelector('#user-stat').innerHTML = progressStat
+    console.log(progressValue.max);
+    console.log(progressValue.value);
+
+</script>
