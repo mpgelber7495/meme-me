@@ -30,34 +30,42 @@
                                     <span id="upload-button">Upload New Meme</span>
                                 </a>
                             </span>
-                            <span class="navbar-item">
-                                {{#if user}}
+
+                            {{#if user}}
+                            <span class="navbar-item login">
                                 <a href="/logout" id="log-in-or-out" class="button has-text-weight-bold is-secondary">
                                     <span>Logout</span>
                                 </a>
-                                <a class="navbar-item" href="/user/{{user.parsedId}}">
+                            </span>
+                            <span class="navbar-item login">
+                                <a class="" href="/user/{{user.parsedId}}">
                                     <img src="{{user.picture}}" class="user-profile-img" alt="{{user.name}}" />
                                 </a>
-                                {{else}}
+                            </span>
+                            {{else}}
+                            <span class="navbar-item">
                                 <a href="/login" id="log-in-or-out" class="button has-text-weight-bold is-primary">
                                     <span>Login</span>
                                 </a>
-                                {{/if}}
                             </span>
+                            {{/if}}
+
                         </div>
                     </nav>
                 </div>
 
                 <!-- Hero content: will be in the middle -->
                 <div class="hero-body">
+
                     <div class="container has-text-centered">
                         <h1 class="title has-text-primary mark">
+
                             Make your own meme
                         </h1>
-                        <h2 class="subtitle has-text-primary mark">
-                            Spread your memes away
-                        </h2>
+
                     </div>
+                    <div class="container"><iframe src="https://giphy.com/embed/W51AXLVPzhEj4tlQzi" width="100"
+                            height="50" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>
                 </div>
 
                 <!-- Hero footer: will stick at the bottom -->
