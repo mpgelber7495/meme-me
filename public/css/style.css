@@ -45,7 +45,7 @@ a.navbar-item:hover {
 }
 @import url("https://fonts.googleapis.com/css?family=Squada+One&display=swap");
 
-h1 {
+h1.title {
   font-size: 5em;
   font: bold 7.5vw/1.6 "Squada One", sans-serif;
   user-select: none;
