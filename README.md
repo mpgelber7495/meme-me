@@ -29,6 +29,7 @@ Meme-me is a social Memeing platform where users can upload pictures they think 
 - Passport.js (authentication)
 - Auth0 (authentication server)
 - Sequelize
+- Handlebars
 
 ### Live App:
 
